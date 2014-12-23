@@ -54,5 +54,16 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/takebayashi/p5-WebService-Instapaper/issues"
+      },
+      "homepage" : "https://github.com/takebayashi/p5-WebService-Instapaper",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/takebayashi/p5-WebService-Instapaper.git",
+         "web" : "https://github.com/takebayashi/p5-WebService-Instapaper"
+      }
+   },
    "version" : "0.01"
 }

@@ -16,6 +16,10 @@ WebService::Instapaper - A client for the Instapaper Full API
     # get bookmark list
     my @bookmarks = $client->bookmarks;
 
+    # archive bookmarks
+    my $bookmark = shift @bookmarks;
+    $client->archive_bookmark($bookmark->{bookmark_id});
+
 # DESCRIPTION
 
 WebService::Instapaper is a client for the Instapepr Full API.

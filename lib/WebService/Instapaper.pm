@@ -49,6 +49,22 @@ sub bookmarks {
   @{decode_json($res->decoded_content)->{bookmarks}};
 }
 
+sub add_bookmark {
+  my ($self, $url, %params) = @_;
+  $params{url} = $url;
+  $self->request('POST', '/bookmarks/add', \%params);
+}
+
+sub delete_bookmark {
+  my ($self, $id) = @_;
+  $self->request('POST', '/bookmarks/delete', {bookmark_id => $id});
+}
+
+sub archive_bookmark {
+  my ($self, $id) = @_;
+  $self->request('POST', '/bookmarks/archive', {bookmark_id => $id});
+}
+
 1;
 __END__
 
@@ -71,6 +87,10 @@ WebService::Instapaper - A client for the Instapaper Full API
 
     # get bookmark list
     my @bookmarks = $client->bookmarks;
+
+    # archive bookmarks
+    my $bookmark = shift @bookmarks;
+    $client->archive_bookmark($bookmark->{bookmark_id});
 
 =head1 DESCRIPTION
 

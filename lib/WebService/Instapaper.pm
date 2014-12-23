@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use OAuth::Lite::Consumer;
+use JSON qw(decode_json);
 
 our $VERSION = "0.01";
 
@@ -37,6 +38,12 @@ sub token {
   $self->{access_token} = OAuth::Lite::Token->new(token => $access_token, secret => $access_secret);
 }
 
+sub bookmarks {
+  my ($self) = @_;
+  my $res = $self->{consumer}->request(method => 'POST', url => $endpoint . '/bookmarks/list', token => $self->{access_token});
+  @{decode_json($res->decoded_content)->{bookmarks}};
+}
+
 1;
 __END__
 
@@ -53,8 +60,12 @@ WebService::Instapaper - A client for the Instapaper Full API
     my $client = WebService::Instapaper->new(consumer_key => '...', consumer_secret => '...');
 
     $client->auth('username', 'password');
+
     # or
-    # $client->token('access_token', 'access_token_secret');
+    $client->token('access_token', 'access_token_secret');
+
+    # get bookmark list
+    my @bookmarks = $client->bookmarks;
 
 =head1 DESCRIPTION
 

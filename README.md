@@ -22,7 +22,44 @@ WebService::Instapaper - A client for the Instapaper Full API
 
 # DESCRIPTION
 
-WebService::Instapaper is a client for the Instapepr Full API.
+WebService::Instapaper is a client for the Instapepr Full API (https://www.instapaper.com/api)
+
+- new(\\%options)
+
+    Create new instance of this module. `%options` should contain following keys: `consumer_key` and `consumer_secret`.
+
+- auth($username, $password)
+
+    Authenticate with given `$username` and `$password`.
+
+- token($access\_token, $access\_secret)
+
+    Set existing access token to the instance.
+
+- bookmarks(\\%options)
+
+    Return bookmark list. By default, it returns 25 bookmark items.
+
+    `%options` may contain `limit` to specify the number of results.
+
+        my @many_bookmarks = $client->bookmarks(limit => 100);
+
+- add\_bookmark($url, \\%options)
+
+    Add new bookmark to Instapaper.
+
+        $client->add_bookmark('http://www.example.org/');
+
+        # with details
+        $client->add_bookmark('http://www.example.org/', title => 'Example Article', description => 'This is an example.');
+
+- delete\_bookmark($bookmark\_id)
+
+    Delete the bookmark.
+
+- archive\_bookmark($bookmark\_id)
+
+    Archive the bookmark.
 
 # LICENSE
 

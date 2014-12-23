@@ -5,7 +5,10 @@ use warnings;
 
 our $VERSION = "0.01";
 
-
+sub new {
+  my ($class, %args) = @_;
+  bless {%args}, $class;
+}
 
 1;
 __END__
@@ -14,15 +17,17 @@ __END__
 
 =head1 NAME
 
-WebService::Instapaper - It's new $module
+WebService::Instapaper - A client for the Instapaper Full API
 
 =head1 SYNOPSIS
 
     use WebService::Instapaper;
 
+    my $client = WebService::Instapaper->new(token => '...', secret => '...');
+
 =head1 DESCRIPTION
 
-WebService::Instapaper is ...
+WebService::Instapaper is a client for the Instapepr Full API.
 
 =head1 LICENSE
 

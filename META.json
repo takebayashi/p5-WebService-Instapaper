@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "A client for the Instapaper Full API",
    "author" : [
       "Shun Takebayashi <shun@takebayashi.asia>"
    ],

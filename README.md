@@ -1,14 +1,16 @@
 # NAME
 
-WebService::Instapaper - It's new $module
+WebService::Instapaper - A client for the Instapaper Full API
 
 # SYNOPSIS
 
     use WebService::Instapaper;
 
+    my $client = WebService::Instapaper->new(token => '...', secret => '...');
+
 # DESCRIPTION
 
-WebService::Instapaper is ...
+WebService::Instapaper is a client for the Instapepr Full API.
 
 # LICENSE
 

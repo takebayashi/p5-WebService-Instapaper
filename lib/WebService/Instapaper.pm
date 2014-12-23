@@ -3,11 +3,32 @@ use 5.008001;
 use strict;
 use warnings;
 
+use OAuth::Lite::Consumer;
+
 our $VERSION = "0.01";
+
+my $endpoint = "https://www.instapaper.com/api/1.1";
 
 sub new {
   my ($class, %args) = @_;
-  bless {%args}, $class;
+  my $self = {%args};
+  $self->{consumer} = OAuth::Lite::Consumer->new(
+    consumer_key => $self->{consumer_key},
+    consumer_secret => $self->{consumer_secret}
+  );
+  bless $self, $class;
+}
+
+sub auth {
+  my ($self, $username, $password) = @_;
+  $self->{consumer}->obtain_access_token(
+    url => $endpoint . '/oauth/access_token',
+    params => {
+      x_auth_username => $username,
+      x_auth_password => $password,
+      x_auth_mode => 'client_auth'
+    }
+  );
 }
 
 1;
@@ -23,7 +44,9 @@ WebService::Instapaper - A client for the Instapaper Full API
 
     use WebService::Instapaper;
 
-    my $client = WebService::Instapaper->new(token => '...', secret => '...');
+    my $client = WebService::Instapaper->new(consumer_key => '...', consumer_secret => '...');
+
+    $client->auth('username', 'password');
 
 =head1 DESCRIPTION
 

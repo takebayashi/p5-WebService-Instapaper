@@ -21,7 +21,7 @@ sub new {
 
 sub auth {
   my ($self, $username, $password) = @_;
-  $self->{consumer}->obtain_access_token(
+  my $res = $self->{consumer}->obtain_access_token(
     url => $endpoint . '/oauth/access_token',
     params => {
       x_auth_username => $username,
@@ -29,6 +29,12 @@ sub auth {
       x_auth_mode => 'client_auth'
     }
   );
+  $self->{access_token} = $res->access_token;
+}
+
+sub token {
+  my ($self, $access_token, $access_secret) = @_;
+  $self->{access_token} = OAuth::Lite::Token->new(token => $access_token, secret => $access_secret);
 }
 
 1;
@@ -47,6 +53,8 @@ WebService::Instapaper - A client for the Instapaper Full API
     my $client = WebService::Instapaper->new(consumer_key => '...', consumer_secret => '...');
 
     $client->auth('username', 'password');
+    # or
+    # $client->token('access_token', 'access_token_secret');
 
 =head1 DESCRIPTION
 

@@ -9,6 +9,8 @@ WebService::Instapaper - A client for the Instapaper Full API
     my $client = WebService::Instapaper->new(consumer_key => '...', consumer_secret => '...');
 
     $client->auth('username', 'password');
+    # or
+    # $client->token('access_token', 'access_token_secret');
 
 # DESCRIPTION
 

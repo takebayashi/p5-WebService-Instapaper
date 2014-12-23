@@ -38,9 +38,14 @@ sub token {
   $self->{access_token} = OAuth::Lite::Token->new(token => $access_token, secret => $access_secret);
 }
 
+sub request {
+  my ($self, $method, $path, $params) = @_;
+  $self->{consumer}->request(method => $method, url => $endpoint . $path, token => $self->{access_token}, params => $params);
+}
+
 sub bookmarks {
-  my ($self) = @_;
-  my $res = $self->{consumer}->request(method => 'POST', url => $endpoint . '/bookmarks/list', token => $self->{access_token});
+  my ($self, %params) = @_;
+  my $res = $self->request('POST', '/bookmarks/list', \%params);
   @{decode_json($res->decoded_content)->{bookmarks}};
 }
 

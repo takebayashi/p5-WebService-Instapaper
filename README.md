@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/takebayashi/p5-WebService-Instapaper.svg?branch=master)](https://travis-ci.org/takebayashi/p5-WebService-Instapaper)
 # NAME
 
 WebService::Instapaper - A client for the Instapaper Full API

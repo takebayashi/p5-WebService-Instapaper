@@ -5,6 +5,7 @@ use warnings;
 
 use OAuth::Lite::Consumer;
 use JSON qw(decode_json);
+use Carp qw(croak);
 
 our $VERSION = "0.01";
 
@@ -30,6 +31,9 @@ sub auth {
       x_auth_mode => 'client_auth'
     }
   );
+  unless ($res) {
+    croak 'failed to obtain access token';
+  }
   $self->{access_token} = $res->access_token;
 }
 
@@ -40,7 +44,11 @@ sub token {
 
 sub request {
   my ($self, $method, $path, $params) = @_;
-  $self->{consumer}->request(method => $method, url => $endpoint . $path, token => $self->{access_token}, params => $params);
+  my $res = $self->{consumer}->request(method => $method, url => $endpoint . $path, token => $self->{access_token}, params => $params);
+  unless ($res->is_success) {
+    croak "failed to ${method} ${path}";
+  }
+  $res;
 }
 
 sub bookmarks {

@@ -73,6 +73,11 @@ sub archive_bookmark {
   $self->request('POST', '/bookmarks/archive', {bookmark_id => $id});
 }
 
+sub unarchive_bookmark {
+  my ($self, $id) = @_;
+  $self->request('POST', '/bookmarks/unarchive', {bookmark_id => $id});
+}
+
 1;
 __END__
 
@@ -142,6 +147,10 @@ Delete the bookmark.
 =item archive_bookmark($bookmark_id)
 
 Archive the bookmark.
+
+=item unarchive_bookmark($bookmark_id)
+
+Unarchive the bookmark.
 
 =back
 

@@ -4,7 +4,7 @@
       "Shun Takebayashi <shun@takebayashi.asia>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.3.0, CPAN::Meta::Converter version 2.143240",
+   "generated_by" : "Minilla/v2.4.1, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "perl_5"
    ],
@@ -42,6 +42,7 @@
       },
       "runtime" : {
          "requires" : {
+            "JSON" : "0",
             "LWP::Protocol::https" : "0",
             "OAuth::Lite" : "0.21",
             "perl" : "5.008001"

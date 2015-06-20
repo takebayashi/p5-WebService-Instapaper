@@ -7,7 +7,7 @@ use OAuth::Lite::Consumer;
 use JSON qw(decode_json);
 use Carp qw(croak);
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 my $endpoint = "https://www.instapaper.com/api/1.1";
 

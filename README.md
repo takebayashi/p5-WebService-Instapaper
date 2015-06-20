@@ -62,6 +62,10 @@ WebService::Instapaper is a client for the Instapepr Full API (https://www.insta
 
     Archive the bookmark.
 
+- unarchive\_bookmark($bookmark\_id)
+
+    Unarchive the bookmark.
+
 # LICENSE
 
 Copyright (C) Shun Takebayashi.
